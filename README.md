@@ -1,0 +1,1 @@
+# fastAPI-crud-template
