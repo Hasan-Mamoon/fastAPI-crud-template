@@ -1,0 +1,26 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Pipenv / Poetry locks
+Pipfile.lock
+poetry.lock
+
+# Editor/IDE
+.vscode/
+.idea/
+*.iml
+*.swp
+
+# SQLite DB files
+*.db
+*.sqlite3
+
+# Logs
+*.log
+*.pytest_cache/

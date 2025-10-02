@@ -14,10 +14,11 @@ def read_users(session:Session= Depends(get_session)):
 
 @router.post("/add-students", response_model=StudentRead)
 def create_student(newStudent: StudentCreate, session: Session = Depends(get_session)):
-    session.add(newStudent)
+    db_student = student.model_validate(newStudent)
+    session.add(db_student)
     session.commit()
-    session.refresh(newStudent)
-    return newStudent
+    session.refresh(db_student)
+    return db_student
 
 @router.patch("/edit-student",response_model=StudentRead)
 def edit_student(studentData: StudentUpdate, session: Session = Depends(get_session)):
@@ -31,6 +32,8 @@ def edit_student(studentData: StudentUpdate, session: Session = Depends(get_sess
 
     for key, value in update_data.items():
         setattr(db_student, key, value)
+
+
 
     session.add(db_student)
     session.commit()
