@@ -27,4 +27,9 @@ class StudentUpdate(BaseModel):
     class Config:
         orm_mode = True
 
+
+class StudentDelete(BaseModel):
+    id:int
+    class Config:
+        orm_mode = True
     

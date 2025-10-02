@@ -1,7 +1,7 @@
 from fastapi import APIRouter, FastAPI,Depends, HTTPException
 from sqlmodel import select
 from app.database.session import Session,get_session
-from app.schemas.student import StudentCreate,StudentRead,StudentUpdate
+from app.schemas.student import StudentCreate, StudentDelete,StudentRead,StudentUpdate
 from app.models.student import student
 
 router = APIRouter(prefix="/students", tags=["students"])
@@ -42,8 +42,8 @@ def edit_student(studentData: StudentUpdate, session: Session = Depends(get_sess
     return db_student
 
 @router.delete("/delete-student",response_model=StudentRead)
-def delete_student(student_id:int,session:Session=Depends(get_session)):
-  toDelete = session.get(student,student_id)
+def delete_student(studentTod:StudentDelete,session:Session=Depends(get_session)):
+  toDelete = session.get(student,studentTod.id)
   if not toDelete:
         raise HTTPException(status_code=404, detail="Student not found")
   session.delete(toDelete)
